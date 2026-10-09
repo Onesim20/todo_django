@@ -1,0 +1,15 @@
+{% extends "tasks/base.html" %}
+
+{% block title %}Новая задача{% endblock %}
+
+{% block content %}
+  <h1>Новая задача</h1>
+  <div class="card block">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn" type="submit">Создать</button>
+    </form>
+  </div>
+  <a href="{% url 'task_list' %}">← Ко всем задачам</a>
+{% endblock %}

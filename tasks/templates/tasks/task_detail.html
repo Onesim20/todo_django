@@ -1,0 +1,26 @@
+{% extends "tasks/base.html" %}
+
+{% block title %}{{ task.title }}{% endblock %}
+
+{% block content %}
+  <h1>{{ task.title }}</h1>
+  <div class="card block">
+    <p><b>Статус:</b>
+      {% if task.is_done %}
+        <span class="badge done">Выполнено</span>
+      {% else %}
+        <span class="badge todo">Не выполнено</span>
+      {% endif %}
+    </p>
+    <p><b>Описание:</b> {{ task.description|default:"—" }}</p>
+    <p><b>Создана:</b> {{ task.created_at|date:"d.m.Y H:i" }}</p>
+
+    <form method="post" action="{% url 'task_toggle' task.pk %}">
+      {% csrf_token %}
+      <button class="btn" type="submit">
+        {% if task.is_done %}Вернуть в «не выполнено»{% else %}Отметить выполненной{% endif %}
+      </button>
+    </form>
+  </div>
+  <a href="{% url 'task_list' %}">← Ко всем задачам</a>
+{% endblock %}

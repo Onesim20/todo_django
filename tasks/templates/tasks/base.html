@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}ToDo{% endblock %}</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f6f8; margin: 0; color: #222; }
+    header { background: #2f3e55; padding: 16px 0; }
+    header a { color: #fff; text-decoration: none; margin-right: 20px; }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 16px; }
+    .card { background: #fff; border-radius: 8px; padding: 16px; margin: 12px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,.1); display: flex;
+            justify-content: space-between; align-items: center; }
+    .card.block { display: block; }
+    .card a { color: #2f3e55; text-decoration: none; font-weight: bold; }
+    .badge { padding: 3px 10px; border-radius: 12px; font-size: 13px; }
+    .done { background: #d4edda; color: #256029; }
+    .todo { background: #fff3cd; color: #8a6d0b; }
+    .btn { display: inline-block; background: #2f3e55; color: #fff; padding: 8px 14px;
+           border: none; border-radius: 6px; cursor: pointer; text-decoration: none; font-size: 14px; }
+    input[type=text], textarea { width: 100%; padding: 8px; margin: 6px 0 14px; box-sizing: border-box; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="{% url 'task_list' %}"><b>ToDo</b></a>
+      <a href="{% url 'task_create' %}">+ Новая задача</a>
+    </div>
+  </header>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
